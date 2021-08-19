@@ -24,18 +24,18 @@
 <script src="<?= base_url('/') ?>assets/select2/js/select2.min.js" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?= base_url('/') ?>assets/datatables/datatables.min.js" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?= base_url('/') ?>assets/summernote/summernote-bs4.min.js" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-<script src="<?= base_url('/') ?>assets/demo/demo.js"></script>
+
 <script>
     $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        // demo.initGoogleMaps();
-        $('.select2').select2();
-        $('.table-datatables').DataTable();
+        $('.select2').select2()
+
+        $('.table-datatables').DataTable()
+
         $('.summernote').summernote({
             placeholder: 'Silahkan Isi Berita Anda',
             tabsize: 3,
             height: 300
-        });
+        })
     });
 </script>
 </body>
