@@ -2,8 +2,8 @@
 Apa itu Karya Muda
 ###################
 
-Karya Muda adalah suatu organisasi karang taruna yang berada di kelurahan buaran,
-tepatnya di RT. 02 / RW. 01. Karya Muda didirikan pada tahun 2013. Hingga saat ini
+<b>Karya Muda</b> adalah suatu organisasi karang taruna yang berada di kelurahan buaran,
+tepatnya di RT. 02 / RW. 01. <b>Karya Muda</b> didirikan pada tahun 2013. Hingga saat ini
 karang taruna Karya Muda masih berjalan dengan baik dan dikepalai oleh saudara
 M. Fahru Roji dan diwakilkan oleh saudara Sepri Syamsudin.
 
