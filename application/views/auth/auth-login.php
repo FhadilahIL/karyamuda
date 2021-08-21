@@ -47,42 +47,44 @@
                                 <img src="<?= base_url('/') ?>assets/img/settings/logo.png" alt="">
                             </div>
                         </div>
-                        <form class="form" method="" action="post">
-                            <div class="card-body">
-                                <div class="input-group no-border input-lg">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="now-ui-icons users_circle-08"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Username or Email">
+                        <!-- <form class="form" method="" action="post"> -->
+                        <?= form_open(base_url('auth'), ['method' => 'post']) ?>
+                        <div class="card-body">
+                            <div class="input-group no-border input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons users_circle-08"></i>
+                                    </span>
                                 </div>
-                                <div class="input-group no-border input-lg">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="now-ui-icons text_caps-small"></i>
-                                        </span>
-                                    </div>
-                                    <input type="password" placeholder="Password" class="form-control" />
-                                </div>
+                                <input type="text" name="username" class="form-control" placeholder="Username" value="<?= set_value('username') ?>" />
                             </div>
-                            <div class="card-footer text-center">
-                                <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">Login</a>
-                        </form>
+                            <div class="input-group no-border input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                </div>
+                                <input type="password" name="password" placeholder="Password" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Login</button>
+                            <?= form_close() ?>
+                            <!-- </form> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <footer class="footer">
-        <div class="container">
-            <div class="copyright" id="copyright">
-                &copy; <?= date('Y') ?> Karya Muda, Designed by
-                <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-                <a href="https://github.com/FhadilahIL" target="_blank">Muhammad Ilham Fhadilah</a>.
+        <footer class="footer">
+            <div class="container">
+                <div class="copyright" id="copyright">
+                    &copy; <?= date('Y') ?> Karya Muda, Designed by
+                    <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+                    <a href="https://github.com/FhadilahIL" target="_blank">Muhammad Ilham Fhadilah</a>.
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     </div>
     <!--   Core JS Files   -->
     <script src="<?= base_url('/') ?>assets/js/core/jquery.min.js" type="text/javascript"></script>

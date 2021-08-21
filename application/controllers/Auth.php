@@ -17,12 +17,12 @@ class Auth extends CI_Controller
 
         $form_config = [
             [
-                'field'     => 'email',
-                'label'     => 'Email',
-                'rules'     => 'required|valid_email',
+                'field'     => 'username',
+                'label'     => 'Username',
+                'rules'     => 'required|max_length[25]',
                 'errors'    => [
-                    'required'      => 'Email harus diisi',
-                    'valid_email'   => 'Email harus tidak valid'
+                    'required'      => 'Username harus diisi',
+                    'max_length'    => 'Username maksimal 25 karakter'
                 ]
             ],
             [
@@ -45,18 +45,17 @@ class Auth extends CI_Controller
 
     function _login()
     {
-        $email = $this->input->post('email', TRUE);
+        $username = $this->input->post('username', TRUE);
         $password = $this->input->post('password', TRUE);
 
-        $cariUser = $this->UserModel->getUser($email);
+        $cariUser = $this->UserModel->getUser($username);
         if ($cariUser->num_rows()) {
             $cariDataUser = $cariUser->row();
             if (password_verify($password, $cariDataUser->password)) {
                 // jika benar
                 $dataUser = [
-                    'id'    => $cariDataUser->id,
-                    'email' => $cariDataUser->email,
-                    'role'  => $cariDataUser->role_id,
+                    'id'    => $cariDataUser->id_user,
+                    'role'  => $cariDataUser->id_jabatan,
                 ];
                 $this->session->set_userdata($dataUser);
                 redirect('auth/cek_session');
@@ -66,8 +65,8 @@ class Auth extends CI_Controller
                 redirect('auth');
             }
         } else {
-            // jika email tidak terdaftar
-            $this->session->set_flashdata('pesan', 'Email yang anda masukan tidak terdaftar');
+            // jika username tidak terdaftar
+            $this->session->set_flashdata('pesan', 'Username yang anda masukan tidak terdaftar');
             redirect('auth');
         }
     }
@@ -76,7 +75,7 @@ class Auth extends CI_Controller
     {
         if ($this->session->role == '1') {
             redirect('superadmin');
-        } else if ($this->session->role == '2' && $this->session->role == '3') {
+        } else if ($this->session->role == '2' || $this->session->role == '3') {
             redirect('admin');
         } else if ($this->session->role == '4') {
             redirect('bendahara');

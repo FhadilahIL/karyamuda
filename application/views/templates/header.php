@@ -30,7 +30,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="<?= base_url('/') ?>assets/fontawesome/css/all.css" />
     <!-- CSS Files -->
-    <link href="<?= base_url('/') ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?= base_url('/') ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<?= base_url('/') ?>assets/css/now-ui-dashboard.css" rel="stylesheet" />
     <link href="<?= base_url('/') ?>assets/select2/css/select2.min.css" rel="stylesheet" />
     <link href="<?= base_url('/') ?>assets/select2/css/select2-bootstrap4.min.css" rel="stylesheet" />

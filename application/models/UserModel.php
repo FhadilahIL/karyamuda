@@ -5,19 +5,22 @@ class UserModel extends CI_Model
 {
     function getUserAll()
     {
+        $this->db->select('id_user, username, nama, alamat, jenis_kelamin, foto, status, tb_user.id_jabatan as id_jabatan, jabatan');
+        $this->db->join('tb_jabatan', 'tb_user.id_jabatan = tb_jabatan.id_jabatan', 'inner');
         return $this->db->get('tb_user');
     }
 
-    function getUser($email)
+    function getUser($username)
     {
-        $this->db->where('email', $email);
+        $this->db->where('username', $username);
         return $this->db->get('tb_user');
     }
 
-    function getUserId($id)
+    function getUserId($id_user)
     {
-        $this->db->where('tb_user.id', $id);
-        $this->db->join('tb_role', 'tb_user.role_id = tb_role.id', 'inner');
+        $this->db->select('id_user, username, nama, alamat, jenis_kelamin, foto, status, tb_user.id_jabatan as id_jabatan, jabatan');
+        $this->db->where('tb_user.id_user', $id_user);
+        $this->db->join('tb_jabatan', 'tb_user.id_jabatan = tb_jabatan.id_jabatan', 'inner');
         return $this->db->get('tb_user');
     }
 }

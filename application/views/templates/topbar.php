@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+<nav class="navbar navbar-expand-lg navbar-transparent bg-primary navbar-absolute">
     <div class="container-fluid">
         <div class="navbar-wrapper">
             <div class="navbar-toggle">
@@ -20,14 +20,30 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user fa-fw fa-2x"></i>
+                        <?php if ($user->foto == 'default.svg') { ?>
+                            <i class="fas fa-user fa-fw fa-3x align-middle" style="margin-right: 3px;"></i>
+                        <?php } else { ?>
+                            <img src="<?= base_url('/assets/img/users/') . $user->foto ?>" style="width: 30px; margin-right: 4px;" alt="foto_profile">
+                        <?php } ?>
                         <p>
-                            Muhammad Ilham Fhadilah, Superadmin
+                            <?= $user->nama ?>, <?= $user->jabatan ?>
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#"><i class="fas fa-user fa-fw"></i> My Profile</a>
-                        <a class="dropdown-item" href="<?= base_url('auth/logout') ?>"><i class="fas fa-sign fa-fw"></i> Logout</a>
+                        <?php if ($user->id_jabatan == 1) {
+                            $link = base_url('superadmin/my_profile');
+                        } else if ($user->id_jabatan == 2 || $user->id_jabatan == 3) {
+                            $link = base_url('admin/my_profile');
+                        } else if ($user->id_jabatan == 4) {
+                            $link = base_url('sekretaris/my_profile');
+                        } else if ($user->id_jabatan == 5) {
+                            $link = base_url('bendahara/my_profile');
+                        } else if ($user->id_jabatan == 6) {
+                            $link = base_url('anggota/my_profile');
+                        }
+                        ?>
+                        <a class="dropdown-item" href="<?= $link ?>"><i class="fas fa-user fa-fw"></i> My Profile</a>
+                        <a class="dropdown-item" href="<?= base_url('auth/logout') ?>"><i class="fas fa-power-off fa-fw"></i> Logout</a>
                     </div>
                 </li>
             </ul>

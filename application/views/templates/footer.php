@@ -8,10 +8,9 @@
 </div>
 </div>
 <!--   Core JS Files   -->
-<script src="<?= base_url('/') ?>assets/js/core/jquery.min.js"></script>
-<script src="<?= base_url('/') ?>assets/js/core/popper.min.js">
-</script>
-<script src="<?= base_url('/') ?>assets/js/core/bootstrap.min.js"></script>
+<script src="<?= base_url('/') ?>assets/bootstrap/js/jquery-3.6.0.js"></script>
+<script src="<?= base_url('/') ?>assets/bootstrap/js/popper.min.js"></script>
+<script src="<?= base_url('/') ?>assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?= base_url('/') ?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!--  Google Maps Plugin    -->
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
