@@ -40,3 +40,4 @@
 
 <body class="">
     <div class="wrapper">
+        <div class="notifikasi" data-notif="<?= $this->session->flashdata('notif'); ?>" data-pesan="<?= $this->session->flashdata('pesan'); ?>"></div>

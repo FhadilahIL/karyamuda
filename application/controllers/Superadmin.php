@@ -122,14 +122,71 @@ class Superadmin extends CI_Controller
 
     function my_profile()
     {
-        $data['title'] = 'Superadmin - My Profile';
-        $data['menu'] = $this->menu;
-        $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $form_config = [
+            [
+                'field'     => 'nama',
+                'label'     => 'Nama Lengkap',
+                'rules'     => 'required|max_length[100]',
+                'errors'    => [
+                    'required'      => 'Username harus diisi',
+                    'max_length'    => 'Username maksimal 100 karakter'
+                ]
+            ],
+            [
+                'field'     => 'password',
+                'label'     => 'Password',
+                'rules'     => 'min_length[8]',
+                'errors'    => [
+                    'min_length'    => 'Password minimal 8 karakter'
+                ]
+            ],
+            [
+                'field'     => 'passwordConfirm',
+                'label'     => 'Konfirmasi Password',
+                'rules'     => 'min_length[8]|matches[password]',
+                'errors'    => [
+                    'min_length'    => 'Password minimal 8 karakter',
+                    'matches'       => 'Password harus sama'
+                ]
+            ],
+            [
+                'field'     => 'alamat',
+                'label'     => 'Alamat',
+                'rules'     => 'required|max_length[255]',
+                'errors'    => [
+                    'required'      => 'Alamat harus diisi',
+                    'max_length'    => 'Password minimal 255 karakter'
+                ]
+            ],
+            [
+                'field'     => 'jenis_kelamin',
+                'label'     => 'Jenis Kelamin',
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'      => 'Jenis Kelamin harus dipilih'
+                ]
+            ],
+        ];
+        $this->form_validation->set_rules($form_config);
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Superadmin - My Profile';
+            $data['menu'] = $this->menu;
+            $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/topbar');
-        $this->load->view('templates/sidebar');
-        $this->load->view('superadmin/my_profile');
-        $this->load->view('templates/footer');
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar');
+            $this->load->view('templates/sidebar');
+            $this->load->view('superadmin/my_profile');
+            $this->load->view('templates/footer');
+        } else {
+
+            $this->session->set_flashdata('id_user', $this->input->post('id_user', TRUE));
+            $this->session->set_flashdata('nama', $this->input->post('nama', TRUE));
+            $this->session->set_flashdata('alamat', $this->input->post('alamat', TRUE));
+            $this->session->set_flashdata('jenis_kelamin', $this->input->post('jenis_kelamin', TRUE));
+            $this->session->set_flashdata('password', $this->input->post('password', TRUE));
+
+            redirect('user/update_profile');
+        }
     }
 }

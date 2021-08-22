@@ -35,7 +35,99 @@
             tabsize: 3,
             height: 300
         })
-    });
+
+        let notif = $('.notifikasi').data('notif')
+        if (notif != '') {
+            let pesan = $('.notifikasi').data('pesan')
+            showNotification(notif, pesan)
+        }
+    })
+
+    function showPassword(passwordId, iconId) {
+        var pass = document.getElementById(passwordId)
+        if (pass.type == 'password') {
+            $("#" + iconId).attr('class', 'fas fa-eye-slash');
+            $("#" + passwordId).attr("type", "text");
+        } else {
+            $("#" + iconId).attr('class', 'fas fa-eye');
+            $("#" + passwordId).attr("type", "password");
+        }
+    }
+
+    let preview = document.getElementById('preview')
+    let gambar = document.getElementById('foto')
+    let hasil = document.getElementById('hasil')
+    gambar.addEventListener('change', function() {
+        if (gambar.value == '') {
+            hasil.hidden = true
+            preview.hidden = true
+        } else {
+            hasil.hidden = false
+            preview.hidden = false
+        }
+    })
+
+    function tampilkanPreview(gambar, preview) {
+        // membuat objek gambar
+        var gb = gambar.files;
+
+        // loop untuk merender gambar
+        for (var i = 0; i < gb.length; i++) {
+            // bikin variabel
+            var gbPreview = gb[i];
+            var imageType = /image.*/;
+            var preview = document.getElementById(preview);
+            var reader = new FileReader();
+
+            if (gbPreview.type.match(imageType)) {
+                // jika tipe data sesuai
+                preview.file = gbPreview;
+                reader.onload = (function(element) {
+                    return function(e) {
+                        element.src = e.target.result;
+                    };
+                })(preview);
+
+                $('.img-preview').css('display', 'block');
+                // membaca data URL gambar
+                reader.readAsDataURL(gbPreview);
+                preview.style.width = '100%';
+                preview.style.height = '400px';
+
+            } else {
+                // jika tipe data tidak sesuai
+                alert("Type file tidak sesuai. Khusus image.");
+            }
+        }
+    }
+
+    function showNotification(notif, pesan) {
+        from = 'top';
+        align = 'right';
+        if (notif == 'berhasil') {
+            color = 'success';
+            icon = 'fas fa-check fa-fw';
+        } else if (notif == 'info') {
+            color = 'info';
+            icon = 'fas fa-bell fa-fw';
+        } else {
+            color = 'danger';
+            icon = 'fas fa-times fa-fw';
+        }
+
+        $.notify({
+            icon: icon,
+            message: pesan
+
+        }, {
+            type: color,
+            timer: 3000,
+            placement: {
+                from: from,
+                align: align
+            }
+        });
+    }
 </script>
 </body>
 

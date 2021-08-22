@@ -61,11 +61,13 @@ class Auth extends CI_Controller
                 redirect('auth/cek_session');
             } else {
                 // jika password salah
+                $this->session->set_flashdata('notif', 'gagal');
                 $this->session->set_flashdata('pesan', 'Password yang anda masukkan salah');
                 redirect('auth');
             }
         } else {
             // jika username tidak terdaftar
+            $this->session->set_flashdata('notif', 'gagal');
             $this->session->set_flashdata('pesan', 'Username yang anda masukan tidak terdaftar');
             redirect('auth');
         }
@@ -84,7 +86,8 @@ class Auth extends CI_Controller
         } else if ($this->session->role == '6') {
             redirect('anggota');
         } else {
-            $this->session->set_flashdata('pesan', 'Anda Buka Anggota Karang Taruna Karya Muda');
+            $this->session->set_flashdata('notif', 'gagal');
+            $this->session->set_flashdata('pesan', 'Anda Tidak Punya Akses. Silahkan Login Terlebih Dahulu');
             redirect('auth');
         }
     }

@@ -30,12 +30,14 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="<?= base_url('/') ?>assets/fontawesome/css/all.css" />
     <!-- CSS Files -->
-    <link href="<?= base_url('/') ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?= base_url('/') ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?= base_url('/') ?>assets/css/now-ui-dashboard.css" rel="stylesheet" />
     <link href="<?= base_url('/') ?>assets/css/now-ui-kit.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
 
 <body class="login-page sidebar-collapse">
+    <div class="notifikasi" data-notif="<?= $this->session->flashdata('notif'); ?>" data-pesan="<?= $this->session->flashdata('pesan'); ?>"></div>
     <div class="page-header clear-filter" filter-color="orange">
         <div class="page-header-image" style="background-image:url(<?= base_url('/') ?>assets/img/login.jpg)"></div>
         <div class="content">
@@ -47,13 +49,12 @@
                                 <img src="<?= base_url('/') ?>assets/img/settings/logo.png" alt="">
                             </div>
                         </div>
-                        <!-- <form class="form" method="" action="post"> -->
                         <?= form_open(base_url('auth'), ['method' => 'post']) ?>
                         <div class="card-body">
                             <div class="input-group no-border input-lg">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="now-ui-icons users_circle-08"></i>
+                                        <i class="fas fa-user fa-fw"></i>
                                     </span>
                                 </div>
                                 <input type="text" name="username" class="form-control" placeholder="Username" value="<?= set_value('username') ?>" />
@@ -61,16 +62,15 @@
                             <div class="input-group no-border input-lg">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="now-ui-icons text_caps-small"></i>
+                                        <i class="fas fa-lock fa-fw"></i>
                                     </span>
                                 </div>
-                                <input type="password" name="password" placeholder="Password" class="form-control" />
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                             </div>
                         </div>
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Login</button>
                             <?= form_close() ?>
-                            <!-- </form> -->
                         </div>
                     </div>
                 </div>
@@ -87,9 +87,10 @@
         </footer>
     </div>
     <!--   Core JS Files   -->
-    <script src="<?= base_url('/') ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
-    <script src="<?= base_url('/') ?>assets/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="<?= base_url('/') ?>assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<?= base_url('/') ?>assets/bootstrap/js/jquery-3.6.0.js"></script>
+    <script src="<?= base_url('/') ?>assets/bootstrap/js/popper.min.js"></script>
+    <script src="<?= base_url('/') ?>assets/bootstrap/js/bootstrap.min.js"></script>
+
     <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
     <script src="<?= base_url('/') ?>assets/js/plugins/bootstrap-switch.js"></script>
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
@@ -100,6 +101,45 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
     <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
     <script src="<?= base_url('/') ?>assets/js/now-ui-kit.js" type="text/javascript"></script>
+    <script src="<?= base_url('/') ?>assets/js/plugins/bootstrap-notify.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            let notif = $('.notifikasi').data('notif')
+            if (notif != '') {
+                let pesan = $('.notifikasi').data('pesan')
+                showNotification(notif, pesan)
+            }
+        })
+
+        function showNotification(notif, pesan) {
+            from = 'top';
+            align = 'right';
+            if (notif == 'berhasil') {
+                color = 'success';
+                icon = 'fas fa-check fa-fw';
+            } else if (notif == 'info') {
+                color = 'info';
+                icon = 'fas fa-bell fa-fw';
+            } else {
+                color = 'danger';
+                icon = 'fas fa-times fa-fw';
+            }
+
+            $.notify({
+                icon: icon,
+                message: pesan
+
+            }, {
+                type: color,
+                timer: 3000,
+                placement: {
+                    from: from,
+                    align: align
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

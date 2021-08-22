@@ -23,4 +23,9 @@ class UserModel extends CI_Model
         $this->db->join('tb_jabatan', 'tb_user.id_jabatan = tb_jabatan.id_jabatan', 'inner');
         return $this->db->get('tb_user');
     }
+
+    function changeUser($data, $id_user)
+    {
+        return $this->db->update('tb_user', $data, ['id_user' => $id_user]);
+    }
 }
