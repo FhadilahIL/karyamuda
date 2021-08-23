@@ -4,19 +4,19 @@
         <div class="col-md">
             <div class="card ">
                 <div class="card-header ">
-                    <h3>My Profile</h3>
+                    <h3>Ubah Data <small>(<?= $pengguna->nama ?>)</small></h3>
                 </div>
                 <div class="card-body ">
                     <div class="row">
-                        <div class="col-md-4">
-                            <?php if ($user->foto == 'default.jpg') { ?>
-                                <img src="<?= base_url('/assets/img/users/default.svg') ?>" alt="Foto Profile <?= $user->nama ?>">
+                        <div class="col-md-3">
+                            <?php if ($pengguna->foto == 'default.jpg') { ?>
+                                <img src="<?= base_url('/assets/img/users/default.svg') ?>" alt="Foto Profile <?= $pengguna->nama ?>">
                             <?php } else { ?>
-                                <img src="<?= base_url('/assets/img/users/') . $user->foto ?>" alt="Foto Profile <?= $user->nama ?>">
+                                <img src="<?= base_url('/assets/img/users/') . $pengguna->foto ?>" alt="Foto Profile <?= $pengguna->nama ?>">
                             <?php } ?>
                             <!-- Button trigger modal Upload Foto -->
                             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#uploadFoto">
-                                Upload Foto Profile
+                                <i class="fas fa-upload"></i> Upload Foto Profile
                             </button>
 
                             <!-- Modal Upload Foto -->
@@ -30,11 +30,11 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="<?= base_url('user/upload_foto/' . $user->id_user) ?>" method="post" enctype="multipart/form-data">
+                                            <form action="<?= base_url('user/upload_foto/' . $pengguna->id_user) ?>" method="post" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label>Upload Foto Profile</label> <br />
                                                     <span class="btn btn-raised btn-round btn-default btn-file">
-                                                        <span class="fileinput-new">Select image
+                                                        <span class="fileinput-new"><i class="fas fa-upload"></i> Select image
                                                             <input accept=".jpg, .png, .jpeg" onchange="tampilkanPreview(this,'preview')" type='file' id="foto" name="foto" />
                                                         </span>
                                                     </span> <br />
@@ -51,27 +51,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <?= form_open(base_url('superadmin/my_profile'), ['method' => 'post']) ?>
+                        <div class="col-md-9">
+                            <?= form_open(base_url('superadmin/ubah_data/' . $pengguna->id_user), ['method' => 'post']) ?>
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
-                                <input type="text" name="nama" class="form-control" value="<?= $user->nama ?>">
+                                <input type="text" name="nama" class="form-control" value="<?= $pengguna->nama ?>">
                                 <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="hidden" name="id_user" class="form-control" value="<?= $user->id_user ?>" readonly>
-                                <input type="text" name="username" class="form-control" value="<?= $user->username ?>" required>
+                                <input type="hidden" name="id_user" class="form-control" value="<?= $pengguna->id_user ?>" readonly>
+                                <input type="text" name="username" class="form-control" value="<?= $pengguna->username ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <input type="text" name="alamat" class="form-control" value="<?= $user->alamat ?>">
+                                <input type="text" name="alamat" class="form-control" value="<?= $pengguna->alamat ?>">
                                 <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
                                 <select name="jenis_kelamin" class="form-control select2">
-                                    <?= $user->jenis_kelamin == 'L' ? $selected = ['selected', ''] : $selected = ['', 'selected'] ?>
+                                    <?= $pengguna->jenis_kelamin == 'L' ? $selected = ['selected', ''] : $selected = ['', 'selected'] ?>
                                     <option value="">-- Pilih Jenis Kelamin --</option>
                                     <option value="L" <?= $selected[0] ?>>Laki - Laki</option>
                                     <option value="P" <?= $selected[1] ?>>Perempuan</option>
@@ -79,25 +79,20 @@
                                 <?= form_error('jenis_kelamin', '<small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
-                                <div class="input-group">
-                                    <input type="password" name="password" class="form-control" id="password">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text" onclick="showPassword('password','icon-password')"><i class="fas fa-eye" id="icon-password"></i></div>
-                                    </div>
-                                </div>
+                                <label>Jabatan</label>
+                                <select name="id_jabatan" class="form-control select2">
+                                    <option value="">-- Pilih Jabatan --</option>
+                                    <?php foreach ($allJabatan as $jabatan) {
+                                        if ($pengguna->id_jabatan == $jabatan->id_jabatan) { ?>
+                                            <option value="<?= $jabatan->id_jabatan ?>" selected><?= $jabatan->jabatan ?></option>
+                                        <?php } else { ?>
+                                            <option value="<?= $jabatan->id_jabatan ?>"><?= $jabatan->jabatan ?></option>
+                                    <?php }
+                                    } ?>
+                                </select>
+                                <?= form_error('status', '<small class="text-danger">', '</small>') ?>
                             </div>
-                            <div class="form-group">
-                                <label>Konfirmasi Password</label>
-                                <div class="input-group">
-                                    <input type="password" name="passwordConfirm" class="form-control" id="passwordConfirm">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text" onclick="showPassword('passwordConfirm','icon-passwordConfirm')"><i class="fas fa-eye" id="icon-passwordConfirm"></i></div>
-                                    </div>
-                                </div>
-                                <?= form_error('passwordConfirm', '<small class="text-danger">', '</small>') ?>
-                            </div>
-                            <button type="submit" class="btn btn-success btn-block">Simpan Data</button>
+                            <button type="submit" class="btn btn-success btn-block"><i class="fas fa-save"></i> Ubah Data</button>
                             <?= form_close() ?>
                         </div>
                     </div>

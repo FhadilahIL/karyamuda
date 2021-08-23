@@ -28,4 +28,14 @@ class UserModel extends CI_Model
     {
         return $this->db->update('tb_user', $data, ['id_user' => $id_user]);
     }
+
+    function addUser($data)
+    {
+        return $this->db->insert('tb_user', $data);
+    }
+
+    function deleteUser($id_user)
+    {
+        return $this->db->delete('tb_user', ['id_user' => $id_user]);
+    }
 }

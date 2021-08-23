@@ -19,10 +19,10 @@ class Auth extends CI_Controller
             [
                 'field'     => 'username',
                 'label'     => 'Username',
-                'rules'     => 'required|max_length[25]',
+                'rules'     => 'required|max_length[20]',
                 'errors'    => [
                     'required'      => 'Username harus diisi',
-                    'max_length'    => 'Username maksimal 25 karakter'
+                    'max_length'    => 'Username maksimal 20 karakter'
                 ]
             ],
             [
