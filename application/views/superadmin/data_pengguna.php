@@ -80,7 +80,7 @@
                                         <td class="text-center">
                                             <a href="<?= base_url('user/reset_password/') . $allUser->id_user ?>" class="text-secondary" data-toggle="tooltip" data-placement="top" title="Reset Password"><i class="fas fa-undo fa-fw"></i></a>
                                             <?= $allUser->status == '1' ? '<a href="' . base_url('user/change_status/') . $allUser->id_user . '" class="text-info" data-toggle="tooltip" data-placement="top" title="Ubah Status (Tidak Aktif)"><i class="fas fa-toggle-off fa-fw"></i></a>' : '<a href="' . base_url('user/change_status/') . $allUser->id_user . '" class="text-info" data-toggle="tooltip" data-placement="top" title="Ubah Status (Aktif)"><i class="fas fa-toggle-on fa-fw"></i></a>' ?>
-                                            <a href="<?= base_url('superadmin/ubah_data/') . $allUser->id_user ?>" class="text-warning" data-toggle="tooltip" data-placement="top" title="Ubah Data"><i class="fas fa-edit fa-fw"></i></a>
+                                            <a href="<?= base_url('superadmin/ubah_pengguna/') . $allUser->id_user ?>" class="text-warning" data-toggle="tooltip" data-placement="top" title="Ubah Data"><i class="fas fa-edit fa-fw"></i></a>
                                             <?php if ($allUser->id_jabatan != '1') { ?>
                                                 <a href="#" class="text-danger" data-toggle="modal" data-target="#modalHapusUser<?= $allUser->id_user ?>">
                                                     <i class="fas fa-trash fa-fw"></i>

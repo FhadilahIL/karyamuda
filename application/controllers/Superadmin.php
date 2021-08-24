@@ -12,6 +12,7 @@ class Superadmin extends CI_Controller
         $this->load->model('UserModel');
         $this->load->model('BeritaModel');
         $this->load->model('JabatanModel');
+        $this->load->model('KeuanganModel');
         $this->menu = [
             [
                 'icon'  => 'fas fa-users fa-fw',
@@ -88,6 +89,8 @@ class Superadmin extends CI_Controller
         $data['title'] = 'Superadmin - Data Keuangan';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['allKeuangan'] = $this->KeuanganModel->getKeuanganAll()->result();
+        $data['jumlahSaldo'] = $this->KeuanganModel->jumlahSaldo()->row();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
@@ -192,7 +195,7 @@ class Superadmin extends CI_Controller
         }
     }
 
-    function ubah_data($id_pengguna)
+    function ubah_pengguna($id_pengguna)
     {
         $form_config = [
             [
@@ -237,14 +240,12 @@ class Superadmin extends CI_Controller
             $data['pengguna'] = $this->UserModel->getUserId($id_pengguna)->row();
             $data['allJabatan'] = $this->JabatanModel->getJabatanAll()->result();
 
-
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar');
             $this->load->view('templates/sidebar');
-            $this->load->view('superadmin/ubah_data');
+            $this->load->view('superadmin/ubah_pengguna');
             $this->load->view('templates/footer');
         } else {
-
             $this->session->set_flashdata('id_user', $this->input->post('id_user', TRUE));
             $this->session->set_flashdata('nama', $this->input->post('nama', TRUE));
             $this->session->set_flashdata('alamat', $this->input->post('alamat', TRUE));
@@ -253,6 +254,59 @@ class Superadmin extends CI_Controller
             $this->session->set_flashdata('id_jabatan', $this->input->post('id_jabatan', TRUE));
 
             redirect('user/update_profile');
+        }
+    }
+
+    function ubah_keuangan($id_keuangan)
+    {
+        $form_config = [
+            [
+                'field'     => 'keterangan',
+                'label'     => 'Keterangan',
+                'rules'     => 'required|max_length[255]',
+                'errors'    => [
+                    'required'      => 'Keterangan harus diisi',
+                    'max_length'    => 'Keterangan maksimal 255 karakter'
+                ]
+            ],
+            [
+                'field'     => 'jumlah',
+                'label'     => 'Jumlah',
+                'rules'     => 'max_length[10]|numeric',
+                'errors'    => [
+                    'max_length'    => 'Jumlah minimal 10 Angka',
+                    'numeric'       => 'Jumlah Harus Angka'
+                ]
+            ],
+            [
+                'field'     => 'jenis_kas',
+                'label'     => 'Jenis Kas',
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'      => 'Jenis Kas harus dipilih'
+                ]
+            ]
+        ];
+        $this->form_validation->set_rules($form_config);
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Superadmin - Ubah Data Keuangan';
+            $data['menu'] = $this->menu;
+            $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+            $data['keuangan'] = $this->KeuanganModel->getKeuanganId($id_keuangan)->row();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar');
+            $this->load->view('templates/sidebar');
+            $this->load->view('superadmin/ubah_keuangan');
+            $this->load->view('templates/footer');
+        } else {
+
+            $this->session->set_flashdata('id_keuangan', $this->input->post('id_keuangan', TRUE));
+            $this->session->set_flashdata('jumlah', $this->input->post('jumlah', TRUE));
+            $this->session->set_flashdata('jenis_kas', $this->input->post('jenis_kas', TRUE));
+            $this->session->set_flashdata('keterangan', $this->input->post('keterangan', TRUE));
+
+            redirect('keuangan/change_keuangan');
         }
     }
 }

@@ -10,12 +10,6 @@ class BeritaModel extends CI_Model
         return $this->db->get('tb_berita a');
     }
 
-    function getUser($username)
-    {
-        $this->db->where('username', $username);
-        return $this->db->get('tb_berita');
-    }
-
     function getBeritaId($id_user)
     {
         $this->db->select('id_berita, judul_berita, thumbnail, isi_berita, publish_at, a.id_user as id_user, nama');

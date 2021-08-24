@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Agu 2021 pada 07.07
+-- Waktu pembuatan: 24 Agu 2021 pada 21.48
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.20
 
@@ -99,7 +99,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `password`, `nama`, `alamat`, `jenis_kelamin`, `foto`, `status`, `created_at`, `updated_at`, `id_jabatan`) VALUES
-(1, 'mfh_27', '$2y$10$YXkwAH4B5B7ZR1E5tAN0o.Ch9Sy6vOdwChOxegDFhm/aMj6RszdHq', 'Muhammad Ilham Fhadilah', 'Kp. Setu Rt. 02 Rw. 01 No. 113, Kel. Buaran', 'L', 'f62a5ade2f5f5e9d7b71fe142d4e7a83.jpg', 1, '2021-08-22 16:43:01', '2021-08-23 09:44:42', 1);
+(1, 'mfh_27', '$2y$10$Mpeqa/3ZFxkWjVk2yKtSr.8B7y7v3yeXXttf3yho/Y7hVNFbqiDmu', 'Muhammad Ilham Fhadilah', 'Kp. Setu Rt. 02 Rw. 01 No. 113, Kel. Buaran', 'L', 'f62a5ade2f5f5e9d7b71fe142d4e7a83.jpg', 1, '2021-08-22 16:43:01', '2021-08-24 20:33:05', 1);
 
 --
 -- Indexes for dumped tables
@@ -152,7 +152,7 @@ ALTER TABLE `tb_jabatan`
 -- AUTO_INCREMENT untuk tabel `tb_keuangan`
 --
 ALTER TABLE `tb_keuangan`
-  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`
