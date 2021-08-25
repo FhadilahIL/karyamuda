@@ -7,6 +7,8 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->model('UserModel');
+        $this->load->model('SettingsModel');
+        $this->settings = $this->SettingsModel->getSettings()->row();
     }
 
     function index()
@@ -37,7 +39,8 @@ class Auth extends CI_Controller
         ];
         $this->form_validation->set_rules($form_config);
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('auth/auth-login');
+            $data['settings'] = $this->settings;
+            $this->load->view('auth/auth-login', $data);
         } else {
             $this->_login();
         }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Agu 2021 pada 21.48
+-- Waktu pembuatan: 25 Agu 2021 pada 08.21
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.20
 
@@ -77,6 +77,27 @@ CREATE TABLE `tb_keuangan` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_settings`
+--
+
+CREATE TABLE `tb_settings` (
+  `settings_id` int(11) NOT NULL,
+  `nama_kartun` varchar(25) NOT NULL,
+  `logo_kartun` varchar(25) NOT NULL,
+  `logo_sidebar` varchar(25) NOT NULL,
+  `background_login` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_settings`
+--
+
+INSERT INTO `tb_settings` (`settings_id`, `nama_kartun`, `logo_kartun`, `logo_sidebar`, `background_login`) VALUES
+(1, 'Karya Muda', 'logo.png', 'logo-dashboard.png', 'login.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_user`
 --
 
@@ -126,6 +147,12 @@ ALTER TABLE `tb_keuangan`
   ADD KEY `id_user` (`id_user`);
 
 --
+-- Indeks untuk tabel `tb_settings`
+--
+ALTER TABLE `tb_settings`
+  ADD PRIMARY KEY (`settings_id`);
+
+--
 -- Indeks untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
@@ -152,7 +179,13 @@ ALTER TABLE `tb_jabatan`
 -- AUTO_INCREMENT untuk tabel `tb_keuangan`
 --
 ALTER TABLE `tb_keuangan`
-  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_settings`
+--
+ALTER TABLE `tb_settings`
+  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`

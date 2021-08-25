@@ -23,7 +23,7 @@
     <link rel="icon" type="image/png" href="<?= base_url('/') ?>assets/img/settings/logo.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        LOGIN PAGE - KARYA MUDA
+        LOGIN PAGE - <?= strtoupper($settings->nama_kartun) ?>
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -39,14 +39,14 @@
 <body class="login-page sidebar-collapse">
     <div class="notifikasi" data-notif="<?= $this->session->flashdata('notif'); ?>" data-pesan="<?= $this->session->flashdata('pesan'); ?>"></div>
     <div class="page-header clear-filter" filter-color="orange">
-        <div class="page-header-image" style="background-image:url(<?= base_url('/') ?>assets/img/login.jpg)"></div>
+        <div class="page-header-image" style="background-image:url(<?= base_url('/assets/img/settings/') . $settings->background_login ?>)"></div>
         <div class="content">
             <div class="container">
                 <div class="col-md-4 ml-auto mr-auto">
                     <div class="card card-login card-plain">
                         <div class="card-header text-center">
                             <div class="logo-container mt-n5 w-50">
-                                <img src="<?= base_url('/') ?>assets/img/settings/logo.png" alt="">
+                                <img src="<?= base_url('/assets/img/settings/') . $settings->logo_kartun ?>" alt="Logo Kartun">
                             </div>
                         </div>
                         <?= form_open(base_url('auth'), ['method' => 'post']) ?>

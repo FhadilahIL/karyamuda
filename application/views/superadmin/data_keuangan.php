@@ -83,7 +83,7 @@
                                     <td class="text-justify"><?= $pemasukan == 0 ? '-' : 'Rp. ' . number_format($pemasukan, 2, ',', '.') ?></td>
                                     <td class="text-justify"><?= $pengeluaran == 0 ? '-' : 'Rp. ' . number_format($pengeluaran, 2, ',', '.') ?></td>
                                     <td>Rp. <?= number_format($saldoAwal, 2, ',', '.') ?></td>
-                                    <td style="min-width: 100px;">
+                                    <td style="min-width: 100px;" class="text-center">
                                         <a href="<?= base_url('superadmin/ubah_keuangan/') . $allKeuangan->id_keuangan ?>" class="text-warning" data-toggle="tooltip" data-placement="top" title="Ubah Keuangan"><i class="fas fa-edit fa-fw"></i></a>
                                         <a href="#" data-toggle="modal" data-target="#modalHapusKeuangan<?= $allKeuangan->id_keuangan ?>" class="text-danger" data-toggle="tooltip" data-placement="top" title="Hapus Keuangan"><i class="fas fa-trash fa-fw"></i></a>
                                     </td>

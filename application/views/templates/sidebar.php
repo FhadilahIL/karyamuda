@@ -3,7 +3,7 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
     <div class="logo">
-        <img class="simple-text logo-normal" src=" <?= base_url('/assets/img/settings/logo-dashboard.png') ?>" alt="Logo">
+        <img class="simple-text logo-normal" src=" <?= base_url('/assets/img/settings/') . $settings->logo_sidebar ?>" alt="Logo">
     </div>
     <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">

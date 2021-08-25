@@ -13,6 +13,7 @@ class Superadmin extends CI_Controller
         $this->load->model('BeritaModel');
         $this->load->model('JabatanModel');
         $this->load->model('KeuanganModel');
+        $this->load->model('SettingsModel');
         $this->menu = [
             [
                 'icon'  => 'fas fa-users fa-fw',
@@ -40,6 +41,7 @@ class Superadmin extends CI_Controller
                 'link'  => base_url('superadmin/settings')
             ]
         ];
+        $this->settings = $this->SettingsModel->getSettings()->row();
     }
 
     function index()
@@ -47,6 +49,7 @@ class Superadmin extends CI_Controller
         $data['title'] = 'Superadmin - Superadmin';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
@@ -60,6 +63,7 @@ class Superadmin extends CI_Controller
         $data['title'] = 'Superadmin - Data Pengguna';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
         $data['allUser'] = $this->UserModel->getUserAll()->result();
         $data['allJabatan'] = $this->JabatanModel->getJabatanAll()->result();
 
@@ -75,6 +79,7 @@ class Superadmin extends CI_Controller
         $data['title'] = 'Superadmin - Data Berita';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
         $data['allBerita'] = $this->BeritaModel->getBeritaAll()->result();
 
         $this->load->view('templates/header', $data);
@@ -89,6 +94,7 @@ class Superadmin extends CI_Controller
         $data['title'] = 'Superadmin - Data Keuangan';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
         $data['allKeuangan'] = $this->KeuanganModel->getKeuanganAll()->result();
         $data['jumlahSaldo'] = $this->KeuanganModel->jumlahSaldo()->row();
 
@@ -104,6 +110,7 @@ class Superadmin extends CI_Controller
         $data['title'] = 'Superadmin - Data Surat';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
@@ -117,6 +124,7 @@ class Superadmin extends CI_Controller
         $data['title'] = 'Superadmin - Settings';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
@@ -177,6 +185,7 @@ class Superadmin extends CI_Controller
             $data['title'] = 'Superadmin - My Profile';
             $data['menu'] = $this->menu;
             $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+            $data['settings'] = $this->settings;
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar');
@@ -237,6 +246,7 @@ class Superadmin extends CI_Controller
             $data['title'] = 'Superadmin - My Profile';
             $data['menu'] = $this->menu;
             $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+            $data['settings'] = $this->settings;
             $data['pengguna'] = $this->UserModel->getUserId($id_pengguna)->row();
             $data['allJabatan'] = $this->JabatanModel->getJabatanAll()->result();
 
@@ -292,6 +302,7 @@ class Superadmin extends CI_Controller
             $data['title'] = 'Superadmin - Ubah Data Keuangan';
             $data['menu'] = $this->menu;
             $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+            $data['settings'] = $this->settings;
             $data['keuangan'] = $this->KeuanganModel->getKeuanganId($id_keuangan)->row();
 
             $this->load->view('templates/header', $data);

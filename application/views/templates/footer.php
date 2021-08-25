@@ -93,7 +93,6 @@
                 reader.readAsDataURL(gbPreview);
                 preview.style.width = '100%';
                 preview.style.height = '400px';
-
             } else {
                 // jika tipe data tidak sesuai
                 alert("Type file tidak sesuai. Khusus image.");
