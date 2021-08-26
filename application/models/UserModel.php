@@ -16,6 +16,14 @@ class UserModel extends CI_Model
         return $this->db->get('tb_user');
     }
 
+    function getUserByIdJabatan($id_jabatan)
+    {
+        $this->db->select('nama');
+        $this->db->order_by('id_user', 'desc');
+        $this->db->where('id_jabatan', $id_jabatan);
+        return $this->db->get('tb_user', 1);
+    }
+
     function getUserId($id_user)
     {
         $this->db->select('id_user, username, nama, alamat, jenis_kelamin, foto, status, tb_user.id_jabatan as id_jabatan, jabatan');
