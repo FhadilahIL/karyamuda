@@ -14,7 +14,7 @@
                             <th style="min-width: 200px;">No. Surat</th>
                             <th style="min-width: 300px;" class="text-left">Keterangan Surat</th>
                             <th style="min-width: 180px;">Tanggal Surat</th>
-                            <th style="min-width: 120px;">Action</th>
+                            <th style="min-width: 120px;">Actions</th>
                         </thead>
                         <tbody>
                             <tr>
