@@ -164,6 +164,7 @@ class User extends CI_Controller
 				$this->session->set_flashdata('notif', 'gagal');
 				$this->session->set_flashdata('pesan', $this->upload->display_errors());
 				echo '<script>history.go(-1)</script>';
+				return false;
 			} else {
 				if ($cari_pengguna->foto != 'default.jpg') {
 					unlink('./assets/img/users/' . $cari_pengguna->foto);

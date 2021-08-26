@@ -89,6 +89,35 @@ class Superadmin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    function tambah_berita()
+    {
+        $data['title'] = 'Superadmin - Tambah Data Berita';
+        $data['menu'] = $this->menu;
+        $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar');
+        $this->load->view('templates/sidebar');
+        $this->load->view('superadmin/tambah_berita');
+        $this->load->view('templates/footer');
+    }
+
+    function ubah_berita($id_berita)
+    {
+        $data['title'] = 'Superadmin - Ubah Data Berita';
+        $data['menu'] = $this->menu;
+        $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
+        $data['berita'] = $this->BeritaModel->getBeritaId($id_berita)->row();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar');
+        $this->load->view('templates/sidebar');
+        $this->load->view('superadmin/ubah_berita');
+        $this->load->view('templates/footer');
+    }
+
     function keuangan()
     {
         $data['title'] = 'Superadmin - Data Keuangan';

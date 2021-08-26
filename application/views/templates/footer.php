@@ -33,7 +33,18 @@
         $('.summernote').summernote({
             placeholder: 'Silahkan Isi Berita Anda',
             tabsize: 3,
-            height: 300
+            height: 350,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         })
 
         let notif = $('.notifikasi').data('notif')
