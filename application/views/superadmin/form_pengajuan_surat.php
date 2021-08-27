@@ -32,6 +32,15 @@
                             <label>Tempat Pelaksanaan</label>
                             <input type="text" name="tempat_pelaksanaan" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                            <label>Jenis Surat</label>
+                            <select name="nama_template" class="form-control select2" required>
+                                <option value="">-- Pilih Surat --</option>
+                                <?php foreach ($allTemplate as $template) { ?>
+                                    <option value="<?= $template->nama_template ?>"><?= $template->nama_surat ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-success btn-block"><i class="fas fa-check fa-fw"></i> Buat Surat</button>
                     </form>
                 </div>

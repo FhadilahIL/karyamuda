@@ -13,6 +13,7 @@ class Superadmin extends CI_Controller
         $this->load->model('BeritaModel');
         $this->load->model('JabatanModel');
         $this->load->model('KeuanganModel');
+        $this->load->model('SuratModel');
         $this->load->model('SettingsModel');
         $this->menu = [
             [
@@ -95,6 +96,7 @@ class Superadmin extends CI_Controller
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
         $data['settings'] = $this->settings;
+        $data['allTemplate'] = $this->SuratModel->getTemplateAll()->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
@@ -154,6 +156,8 @@ class Superadmin extends CI_Controller
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
         $data['settings'] = $this->settings;
+        $data['allTemplate'] = $this->SuratModel->getTemplateAll()->result();
+        $data['allSurat'] = $this->SuratModel->getSuratAll()->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');

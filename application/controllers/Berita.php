@@ -52,7 +52,7 @@ class Berita extends CI_Controller
             $this->session->set_flashdata('notif', 'gagal');
             $this->session->set_flashdata('pesan', "Berita Gagal Dipublikasi.");
         }
-        echo '<script>history.go(-1)</script>';
+        echo '<script>history.go(-2)</script>';
     }
 
     function change_berita($id_berita)
@@ -98,7 +98,7 @@ class Berita extends CI_Controller
             $this->session->set_flashdata('notif', 'gagal');
             $this->session->set_flashdata('pesan', "Berita Gagal Diubah.");
         }
-        echo '<script>history.go(-1)</script>';
+        echo '<script>history.go(-2)</script>';
     }
 
     function delete_berita($id_berita)

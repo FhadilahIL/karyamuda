@@ -5,6 +5,7 @@ class BeritaModel extends CI_Model
 {
     function getBeritaAll()
     {
+        $this->db->order_by('id_berita', 'desc');
         $this->db->select('id_berita, judul_berita, thumbnail, publish_at, a.id_user as id_user, nama');
         $this->db->join('tb_user b', 'a.id_user = b.id_user', 'inner');
         return $this->db->get('tb_berita a');

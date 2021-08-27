@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="col-md-9">
-                            <?= form_open(base_url('superadmin/ubah_data/' . $pengguna->id_user), ['method' => 'post']) ?>
+                            <?= form_open(base_url('superadmin/ubah_pengguna/' . $pengguna->id_user), ['method' => 'post']) ?>
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
                                 <input type="text" name="nama" class="form-control" value="<?= $pengguna->nama ?>">

@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Tutup</button>
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Tambah User</button>
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Tambah User</button>
                                     </form>
                                 </div>
                             </div>

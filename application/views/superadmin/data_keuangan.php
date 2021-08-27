@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Tutup</button>
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Tambah Keuangan</button>
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Tambah Keuangan</button>
                                     </form>
                                 </div>
                             </div>
@@ -102,8 +102,8 @@
                                                 <p class="text-justify">Apakah anda yakin ingin menghapus data keuangan dengan keterangan <b><?= $allKeuangan->keterangan ?></b> dengan jumlah <b>Rp. <?= number_format($allKeuangan->jumlah, 2, ',', '.') ?></b> ?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-success" data-dismiss="modal"><i class="fas fa-times"></i> Tidak, Tutup</button>
-                                                <a href="<?= base_url('keuangan/delete_keuangan/') . $allKeuangan->id_keuangan ?>" class="btn btn-outline-danger"><i class="fas fa-trash"></i> Ya, Hapus</a>
+                                                <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-times"></i> Tidak, Tutup</button>
+                                                <a href="<?= base_url('keuangan/delete_keuangan/') . $allKeuangan->id_keuangan ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Ya, Hapus</a>
                                             </div>
                                         </div>
                                     </div>

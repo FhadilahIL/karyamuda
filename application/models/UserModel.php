@@ -5,6 +5,7 @@ class UserModel extends CI_Model
 {
     function getUserAll()
     {
+        $this->db->order_by('nama', 'asc');
         $this->db->select('id_user, username, nama, alamat, jenis_kelamin, foto, status, tb_user.id_jabatan as id_jabatan, jabatan');
         $this->db->join('tb_jabatan', 'tb_user.id_jabatan = tb_jabatan.id_jabatan', 'inner');
         return $this->db->get('tb_user');
