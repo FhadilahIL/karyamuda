@@ -26,6 +26,10 @@
         <?= strtoupper($title . ' - ' . $settings->nama_kartun) ?>
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta name="description" content="Karya Muda adalah suatu organisasi karang taruna yang berada di kelurahan buaran, tepatnya di RT. 02 / RW. 01. Karya Muda didirikan pada tahun 2013. Hingga saat ini karang taruna Karya Muda masih berjalan dengan baik." />
+    <meta name="author" content="Karang Taruna Karya Muda" />
+    <meta name="robots" content="Karang Taruna, Karya Muda, Karang Taruna Karya Muda, Karang Taruna Karya Muda Buaran, Karang Taruna Buaran" />
+    <meta name="google" content="notranslate" />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="<?= base_url('/') ?>assets/fontawesome/css/all.css" />
