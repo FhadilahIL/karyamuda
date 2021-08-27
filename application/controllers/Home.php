@@ -15,6 +15,8 @@ class Home extends CI_Controller
 		$data['title'] = 'Beranda';
 		$data['settings'] = $this->settings;
 
-		$this->load->view('home/index', $data);
+		$this->load->view('home/header', $data);
+		$this->load->view('home/index');
+		$this->load->view('home/footer');
 	}
 }
