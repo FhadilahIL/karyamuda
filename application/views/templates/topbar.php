@@ -9,7 +9,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <p class="navbar-brand text-white">KARANG TARUNA - KARYA MUDA</p>
+            <p class="navbar-brand text-white">KARANG TARUNA - <?= $settings->nama_kartun ?></p>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -20,7 +20,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?php if ($user->foto == 'default.svg') { ?>
+                        <?php if ($user->foto == 'default.jpg') { ?>
                             <i class="fas fa-user fa-fw fa-3x align-middle text-white" style="margin-right: 3px;"></i>
                         <?php } else { ?>
                             <img src="<?= base_url('/assets/img/users/') . $user->foto ?>" style="width: 30px; margin-right: 4px;" alt="foto_profile">

@@ -36,7 +36,8 @@ class SuratModel extends CI_Model
     function getSuratAll()
     {
         $this->db->order_by('id_surat', 'desc');
-        return $this->db->get('tb_surat');
+        $this->db->join('tb_user b', 'a.id_user = b.id_user', 'inner');
+        return $this->db->get('tb_surat a');
     }
 
     function addSurat($data)

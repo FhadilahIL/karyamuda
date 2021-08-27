@@ -57,8 +57,9 @@ class Auth extends CI_Controller
             if (password_verify($password, $cariDataUser->password)) {
                 // jika benar
                 $dataUser = [
-                    'id'    => $cariDataUser->id_user,
-                    'role'  => $cariDataUser->id_jabatan,
+                    'id'        => $cariDataUser->id_user,
+                    'role'      => $cariDataUser->id_jabatan,
+                    'logged'    => TRUE,
                 ];
                 $this->session->set_userdata($dataUser);
                 redirect('auth/cek_session');
@@ -83,9 +84,9 @@ class Auth extends CI_Controller
         } else if ($this->session->role == '2' || $this->session->role == '3') {
             redirect('admin');
         } else if ($this->session->role == '4') {
-            redirect('bendahara');
-        } else if ($this->session->role == '5') {
             redirect('sekretaris');
+        } else if ($this->session->role == '5') {
+            redirect('bendahara');
         } else if ($this->session->role == '6') {
             redirect('anggota');
         } else {
@@ -98,6 +99,6 @@ class Auth extends CI_Controller
     function logout()
     {
         $this->session->sess_destroy();
-        redirect('auth');
+        redirect(base_url());
     }
 }

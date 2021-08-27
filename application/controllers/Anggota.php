@@ -1,16 +1,14 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller
+class Anggota extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-
-        if ($this->session->role != 2 && $this->session->role != 3) {
+        if ($this->session->role != 6) {
             redirect('auth/cek_session');
         }
-
         $this->load->model('UserModel');
         $this->load->model('BeritaModel');
         $this->load->model('JabatanModel');
@@ -21,31 +19,30 @@ class Admin extends CI_Controller
             [
                 'icon'  => 'fas fa-users fa-fw',
                 'label' => 'Data Pengguna',
-                'link'  => base_url('admin/pengguna')
+                'link'  => base_url('anggota/pengguna')
             ],
             [
                 'icon'  => 'fas fa-newspaper fa-fw',
                 'label' => 'Data Berita',
-                'link'  => base_url('admin/berita')
+                'link'  => base_url('anggota/berita')
             ],
             [
                 'icon'  => 'fas fa-dollar-sign fa-fw',
                 'label' => 'Data Keuangan',
-                'link'  => base_url('admin/keuangan')
+                'link'  => base_url('anggota/keuangan')
             ],
             [
                 'icon'  => 'fas fa-envelope-open-text fa-fw',
                 'label' => 'Data Surat Menyurat',
-                'link'  => base_url('admin/surat')
+                'link'  => base_url('anggota/surat')
             ]
         ];
-
         $this->settings = $this->SettingsModel->getSettings()->row();
     }
 
     function index()
     {
-        $data['title'] = 'Superadmin - Superadmin';
+        $data['title'] = 'anggota - anggota';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
         $data['settings'] = $this->settings;
@@ -53,13 +50,13 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
         $this->load->view('templates/sidebar');
-        $this->load->view('ketuaWakil/index');
+        $this->load->view('anggota/index');
         $this->load->view('templates/footer');
     }
 
     function pengguna()
     {
-        $data['title'] = 'Superadmin - Data Pengguna';
+        $data['title'] = 'anggota - Data Pengguna';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
         $data['settings'] = $this->settings;
@@ -69,13 +66,13 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
         $this->load->view('templates/sidebar');
-        $this->load->view('ketuaWakil/data_pengguna');
+        $this->load->view('anggota/data_pengguna');
         $this->load->view('templates/footer');
     }
 
     function berita()
     {
-        $data['title'] = 'Superadmin - Data Berita';
+        $data['title'] = 'anggota - Data Berita';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
         $data['settings'] = $this->settings;
@@ -84,13 +81,28 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
         $this->load->view('templates/sidebar');
-        $this->load->view('ketuaWakil/data_berita');
+        $this->load->view('anggota/data_berita');
+        $this->load->view('templates/footer');
+    }
+
+    function isi_surat()
+    {
+        $data['title'] = 'anggota - Form Pengajuan Surat';
+        $data['menu'] = $this->menu;
+        $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
+        $data['allTemplate'] = $this->SuratModel->getTemplateAll()->result();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar');
+        $this->load->view('templates/sidebar');
+        $this->load->view('anggota/form_pengajuan_surat');
         $this->load->view('templates/footer');
     }
 
     function tambah_berita()
     {
-        $data['title'] = 'Superadmin - Tambah Data Berita';
+        $data['title'] = 'anggota - Tambah Data Berita';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
         $data['settings'] = $this->settings;
@@ -98,13 +110,13 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
         $this->load->view('templates/sidebar');
-        $this->load->view('ketuaWakil/tambah_berita');
+        $this->load->view('anggota/tambah_berita');
         $this->load->view('templates/footer');
     }
 
     function ubah_berita($id_berita)
     {
-        $data['title'] = 'Superadmin - Ubah Data Berita';
+        $data['title'] = 'anggota - Ubah Data Berita';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
         $data['settings'] = $this->settings;
@@ -113,13 +125,13 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
         $this->load->view('templates/sidebar');
-        $this->load->view('ketuaWakil/ubah_berita');
+        $this->load->view('anggota/ubah_berita');
         $this->load->view('templates/footer');
     }
 
     function keuangan()
     {
-        $data['title'] = 'Superadmin - Data Keuangan';
+        $data['title'] = 'anggota - Data Keuangan';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
         $data['settings'] = $this->settings;
@@ -129,13 +141,13 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
         $this->load->view('templates/sidebar');
-        $this->load->view('ketuaWakil/data_keuangan');
+        $this->load->view('anggota/data_keuangan');
         $this->load->view('templates/footer');
     }
 
     function surat()
     {
-        $data['title'] = 'Superadmin - Data Surat';
+        $data['title'] = 'anggota - Data Surat';
         $data['menu'] = $this->menu;
         $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
         $data['settings'] = $this->settings;
@@ -145,7 +157,21 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');
         $this->load->view('templates/sidebar');
-        $this->load->view('ketuaWakil/data_surat');
+        $this->load->view('anggota/data_surat');
+        $this->load->view('templates/footer');
+    }
+
+    function settings()
+    {
+        $data['title'] = 'anggota - Settings';
+        $data['menu'] = $this->menu;
+        $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+        $data['settings'] = $this->settings;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar');
+        $this->load->view('templates/sidebar');
+        $this->load->view('anggota/settings');
         $this->load->view('templates/footer');
     }
 
@@ -198,7 +224,7 @@ class Admin extends CI_Controller
         ];
         $this->form_validation->set_rules($form_config);
         if ($this->form_validation->run() == FALSE) {
-            $data['title'] = 'Superadmin - My Profile';
+            $data['title'] = 'anggota - My Profile';
             $data['menu'] = $this->menu;
             $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
             $data['settings'] = $this->settings;
@@ -206,7 +232,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar');
             $this->load->view('templates/sidebar');
-            $this->load->view('ketuaWakil/my_profile');
+            $this->load->view('anggota/my_profile');
             $this->load->view('templates/footer');
         } else {
 
@@ -259,7 +285,7 @@ class Admin extends CI_Controller
         ];
         $this->form_validation->set_rules($form_config);
         if ($this->form_validation->run() == FALSE) {
-            $data['title'] = 'Superadmin - My Profile';
+            $data['title'] = 'anggota - My Profile';
             $data['menu'] = $this->menu;
             $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
             $data['settings'] = $this->settings;
@@ -269,7 +295,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar');
             $this->load->view('templates/sidebar');
-            $this->load->view('ketuaWakil/ubah_pengguna');
+            $this->load->view('anggota/ubah_pengguna');
             $this->load->view('templates/footer');
         } else {
             $this->session->set_flashdata('id_user', $this->input->post('id_user', TRUE));
@@ -280,6 +306,60 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('id_jabatan', $this->input->post('id_jabatan', TRUE));
 
             redirect('user/update_profile');
+        }
+    }
+
+    function ubah_keuangan($id_keuangan)
+    {
+        $form_config = [
+            [
+                'field'     => 'keterangan',
+                'label'     => 'Keterangan',
+                'rules'     => 'required|max_length[255]',
+                'errors'    => [
+                    'required'      => 'Keterangan harus diisi',
+                    'max_length'    => 'Keterangan maksimal 255 karakter'
+                ]
+            ],
+            [
+                'field'     => 'jumlah',
+                'label'     => 'Jumlah',
+                'rules'     => 'max_length[10]|numeric',
+                'errors'    => [
+                    'max_length'    => 'Jumlah minimal 10 Angka',
+                    'numeric'       => 'Jumlah Harus Angka'
+                ]
+            ],
+            [
+                'field'     => 'jenis_kas',
+                'label'     => 'Jenis Kas',
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'      => 'Jenis Kas harus dipilih'
+                ]
+            ]
+        ];
+        $this->form_validation->set_rules($form_config);
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'anggota - Ubah Data Keuangan';
+            $data['menu'] = $this->menu;
+            $data['user'] = $this->UserModel->getUserId($this->session->id)->row();
+            $data['settings'] = $this->settings;
+            $data['keuangan'] = $this->KeuanganModel->getKeuanganId($id_keuangan)->row();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar');
+            $this->load->view('templates/sidebar');
+            $this->load->view('anggota/ubah_keuangan');
+            $this->load->view('templates/footer');
+        } else {
+
+            $this->session->set_flashdata('id_keuangan', $this->input->post('id_keuangan', TRUE));
+            $this->session->set_flashdata('jumlah', $this->input->post('jumlah', TRUE));
+            $this->session->set_flashdata('jenis_kas', $this->input->post('jenis_kas', TRUE));
+            $this->session->set_flashdata('keterangan', $this->input->post('keterangan', TRUE));
+
+            redirect('keuangan/change_keuangan');
         }
     }
 }
