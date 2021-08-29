@@ -6,13 +6,17 @@ class Bendahara extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        if ($this->session->role != 5) {
+        if ($this->session->status == '0' || $this->session->status == NULL) {
+            if ($this->session->role != 5) {
+                redirect('auth/cek_session');
+            }
             redirect('auth/cek_session');
         }
         $this->load->model('UserModel');
         $this->load->model('BeritaModel');
         $this->load->model('JabatanModel');
         $this->load->model('KeuanganModel');
+        $this->load->model('PinjamanModel');
         $this->load->model('SuratModel');
         $this->load->model('SettingsModel');
         $this->menu = [
@@ -122,6 +126,10 @@ class Bendahara extends CI_Controller
         $data['settings'] = $this->settings;
         $data['allKeuangan'] = $this->KeuanganModel->getKeuanganAll()->result();
         $data['jumlahSaldo'] = $this->KeuanganModel->jumlahSaldo()->row();
+        $data['allPinjaman'] = $this->PinjamanModel->getPinjamanAll()->result();
+        $data['jumlahPinjaman'] = $this->PinjamanModel->jumlahPinjaman()->row();
+        $data['saldoSaatIni'] = intval($data['jumlahSaldo']->saldo_akhir) - intval($data['jumlahPinjaman']->jumlah_pinjaman);
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar');

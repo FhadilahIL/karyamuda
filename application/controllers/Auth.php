@@ -59,6 +59,7 @@ class Auth extends CI_Controller
                 $dataUser = [
                     'id'        => $cariDataUser->id_user,
                     'role'      => $cariDataUser->id_jabatan,
+                    'status'    => $cariDataUser->status,
                     'logged'    => TRUE,
                 ];
                 $this->session->set_userdata($dataUser);
@@ -79,15 +80,19 @@ class Auth extends CI_Controller
 
     function cek_session()
     {
-        if ($this->session->role == '1') {
-            redirect('superadmin');
-        } else if ($this->session->role == '2' || $this->session->role == '3') {
-            redirect('admin');
-        } else if ($this->session->role == '4') {
-            redirect('sekretaris');
-        } else if ($this->session->role == '5') {
-            redirect('bendahara');
-        } else if ($this->session->role == '6') {
+        if ($this->session->status == '1') {
+            if ($this->session->role == '1') {
+                redirect('superadmin');
+            } else if ($this->session->role == '2' || $this->session->role == '3') {
+                redirect('admin');
+            } else if ($this->session->role == '4') {
+                redirect('sekretaris');
+            } else if ($this->session->role == '5') {
+                redirect('bendahara');
+            } else if ($this->session->role == '6') {
+                redirect('anggota');
+            }
+        } else if ($this->session->status == '0') {
             redirect('anggota');
         } else {
             $this->session->set_flashdata('notif', 'gagal');

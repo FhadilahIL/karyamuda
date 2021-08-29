@@ -63,6 +63,7 @@
                                 </div>
                                 <input type="text" name="username" class="form-control" placeholder="Username" value="<?= set_value('username') ?>" />
                             </div>
+                            <?= form_error('username', '<p class="text-danger text-left">', '</p>') ?>
                             <div class="input-group no-border input-lg">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -71,6 +72,7 @@
                                 </div>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                             </div>
+                            <?= form_error('password', '<p class="text-danger text-left">', '</p>') ?>
                         </div>
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Login</button>

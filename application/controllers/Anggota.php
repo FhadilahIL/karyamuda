@@ -6,7 +6,10 @@ class Anggota extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        if ($this->session->role != 6) {
+        if ($this->session->status != 0 || $this->session->status == NULL) {
+            if ($this->session->role != 6) {
+                redirect('auth/cek_session');
+            }
             redirect('auth/cek_session');
         }
         $this->load->model('UserModel');

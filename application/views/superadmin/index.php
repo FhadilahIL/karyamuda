@@ -7,7 +7,8 @@
                     <h3>Dashboard</h3>
                 </div>
                 <div class="card-body ">
-                    <p>Isi Dashboard</p>
+                    <p><?= $this->session->status; ?></p>
+                    <p><?= $this->session->role; ?></p>
                 </div>
             </div>
         </div>

@@ -10,6 +10,7 @@ class KeuanganModel extends CI_Model
         $this->db->join('tb_user b', 'a.id_user = b.id_user', 'inner');
         return $this->db->get('tb_keuangan a');
     }
+
     function jumlahSaldo()
     {
         return $this->db->query("SELECT SUM(IF(jenis_kas = 'M', + jumlah, - jumlah)) as saldo_akhir FROM tb_keuangan");
