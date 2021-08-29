@@ -112,16 +112,16 @@
                         </tbody>
                     </table>
                     <!-- Hutang -->
-                    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#modalTambahHutang">
-                        <i class="fas fa-plus fa-fw"></i> Tambah Data Hutang
+                    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#modalTambahPinjaman">
+                        <i class="fas fa-plus fa-fw"></i> Tambah Data Pinjaman
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="modalTambahHutang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modalTambahPinjaman" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus fa-fw"></i> Tambah Data Hutang</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus fa-fw"></i> Tambah Data Pinjaman</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -153,6 +153,7 @@
                         <thead class="bg-warning text-light">
                             <th>No.</th>
                             <th style="min-width: 400px;">Nama Peminjam</th>
+                            <th style="min-width: 400px;">Pemberi Pinjaman</th>
                             <th style="min-width: 150px;">Jumlah</th>
                             <th style="min-width: 300px;">Keterangan</th>
                             <th style="min-width: 250px;">Tanggal Peminjaman</th>
@@ -165,6 +166,7 @@
                                 <tr>
                                     <td class="text-center"><?= $no++ . '.' ?></td>
                                     <td class="text-justify"><?= $allPinjaman->nama_peminjam ?></td>
+                                    <td class="text-justify"><?= $allPinjaman->nama ?></td>
                                     <td>Rp. <?= number_format($allPinjaman->jumlah_pinjaman, 2, ',', '.') ?></td>
                                     <td><?= $allPinjaman->keterangan ?></td>
                                     <td class="text-center"><?= date('l, d F Y (H:i:s)', strtotime($allPinjaman->tanggal_pinjaman)) ?></td>
@@ -187,7 +189,7 @@
                                             <div class="modal-body">
                                                 <form action="<?= base_url('keuangan/change_pinjaman/') . $allPinjaman->id_pinjaman ?>" method="post">
                                                     <div class="form-group">
-                                                        <label>Nama Penghutang</label>
+                                                        <label>Nama Peminjam</label>
                                                         <input type="text" name="nama_peminjam" maxlength="100" value="<?= $allPinjaman->nama_peminjam ?>" class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
