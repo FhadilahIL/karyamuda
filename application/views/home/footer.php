@@ -10,6 +10,7 @@
         </div>
     </div>
 </footer>
+</div>
 <!--   Core JS Files   -->
 <script src="<?= base_url('/') ?>assets/bootstrap/js/jquery-3.6.0.js"></script>
 <script src="<?= base_url('/') ?>assets/bootstrap/js/popper.min.js"></script>
@@ -26,6 +27,8 @@
 <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
 <script src="<?= base_url('/') ?>assets/js/plugins/bootstrap-notify.js"></script>
 <script src="<?= base_url('/') ?>assets/js/now-ui-kit.js" type="text/javascript"></script>
+<script src="<?= base_url('/') ?>assets/select2/js/select2.min.js" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+
 
 <script>
     $(document).ready(function() {
@@ -34,6 +37,14 @@
             let pesan = $('.notifikasi').data('pesan')
             showNotification(notif, pesan)
         }
+
+        $('.carousel-item:first').addClass("active");
+        let a = $('.carousel')
+        a.carousel({
+            interval: 3000
+        })
+
+        $('.select2').select2()
     })
 
     function showNotification(notif, pesan) {

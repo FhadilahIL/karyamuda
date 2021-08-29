@@ -19,6 +19,12 @@ class BeritaModel extends CI_Model
         return $this->db->get('tb_berita a');
     }
 
+    function getBeritaHome($limit, $offset)
+    {
+        $this->db->join('tb_user b', 'a.id_user = b.id_user', 'inner');
+        return $this->db->get('tb_berita a', $limit, $offset);
+    }
+
     function addBerita($data)
     {
         return $this->db->insert('tb_berita', $data);

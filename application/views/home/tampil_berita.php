@@ -38,14 +38,12 @@
     <link href="<?= base_url('/') ?>assets/css/now-ui-dashboard.css" rel="stylesheet" />
     <link href="<?= base_url('/') ?>assets/css/now-ui-kit.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="<?= base_url('/') ?>assets/select2/css/select2.min.css" rel="stylesheet" />
-    <link href="<?= base_url('/') ?>assets/select2/css/select2-bootstrap4.min.css" rel="stylesheet" />
 </head>
 
 <body class="landing-page sidebar-collapse">
     <div class="notifikasi" data-notif="<?= $this->session->flashdata('notif'); ?>" data-pesan="<?= $this->session->flashdata('pesan'); ?>"></div>
 
-    <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="300">
+    <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="<?= base_url() ?>" rel="tooltip" title="Designed by Invision. Coded by Muhammad Ilham Fhadilah" data-placement="bottom">
@@ -73,13 +71,98 @@
                             <a class="nav-link" href="<?= base_url('auth/logout') ?>">Logout</a>
                         <?php } ?>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link bg-success rounded" rel="tooltip" title="Support us on Socialbuzz" data-placement="bottom" href="https://sociabuzz.com/karyamuda21/donate" target="_blank">
-                            <p class="d-lg-none d-xl-none mr-1">Support Us</p>
-                            <i class="fas fa-hand-holding-usd fa-2x fa-fw"></i>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <div class="wrapper">
+        <div class="container">
+            <h2 class="mt-4"><?= $berita->judul_berita ?></h2>
+            <div class="mb-5">
+                Published By <b><?= $berita->nama ?></b> on <b><?= date('l, d F Y H:i:s', strtotime($berita->publish_at)) ?></b>
+            </div>
+            <div class="mb-5">
+                <img src="<?= base_url('/assets/img/berita/') . $berita->thumbnail ?>" alt="Thumbnail Berita">
+            </div>
+            <div class="mb-4 text-justify">
+                <?= $berita->isi_berita ?>
+            </div>
+        </div>
+
+        <footer class="footer footer-default">
+            <div class="container">
+                <div class="copyright" id="copyright">
+                    &copy;
+                    <script>
+                        document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                    </script>, Designed by
+                    <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+                    <a href="https://github.com/FhadilahIL" target="_blank">Muhammad Ilham Fhadilah</a>.
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="<?= base_url('/') ?>assets/bootstrap/js/jquery-3.6.0.js"></script>
+    <script src="<?= base_url('/') ?>assets/bootstrap/js/popper.min.js"></script>
+    <script src="<?= base_url('/') ?>assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="<?= base_url('/') ?>assets/js/plugins/bootstrap-switch.js"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="<?= base_url('/') ?>assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+    <script src="<?= base_url('/') ?>assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!--  Google Maps Plugin    -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+    <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+    <script src="<?= base_url('/') ?>assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="<?= base_url('/') ?>assets/js/now-ui-kit.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            let notif = $('.notifikasi').data('notif')
+            if (notif != '') {
+                let pesan = $('.notifikasi').data('pesan')
+                showNotification(notif, pesan)
+            }
+
+            $('.carousel-item:first').addClass("active");
+            let a = $('.carousel')
+            a.carousel({
+                interval: 3000
+            });
+        })
+
+        function showNotification(notif, pesan) {
+            from = 'top';
+            align = 'right';
+            if (notif == 'berhasil') {
+                color = 'success';
+                icon = 'fas fa-check fa-fw';
+            } else if (notif == 'info') {
+                color = 'info';
+                icon = 'fas fa-bell fa-fw';
+            } else {
+                color = 'danger';
+                icon = 'fas fa-times fa-fw';
+            }
+
+            $.notify({
+                icon: icon,
+                message: pesan
+
+            }, {
+                type: color,
+                timer: 3000,
+                placement: {
+                    from: from,
+                    align: align
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
