@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2021 at 11:55 AM
+-- Generation Time: Aug 29, 2021 at 05:54 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.22
 
@@ -71,6 +71,22 @@ CREATE TABLE `tb_keuangan` (
   `jenis_kas` varchar(1) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `tanggal` datetime NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pinjaman`
+--
+
+CREATE TABLE `tb_pinjaman` (
+  `id_pinjaman` int(11) NOT NULL,
+  `nama_peminjam` varchar(100) NOT NULL,
+  `jumlah_pinjaman` int(11) NOT NULL,
+  `tanggal_pinjaman` datetime NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `status_pinjaman` int(1) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -180,6 +196,13 @@ ALTER TABLE `tb_keuangan`
   ADD KEY `id_user` (`id_user`);
 
 --
+-- Indexes for table `tb_pinjaman`
+--
+ALTER TABLE `tb_pinjaman`
+  ADD PRIMARY KEY (`id_pinjaman`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indexes for table `tb_settings`
 --
 ALTER TABLE `tb_settings`
@@ -228,6 +251,12 @@ ALTER TABLE `tb_keuangan`
   MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_pinjaman`
+--
+ALTER TABLE `tb_pinjaman`
+  MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_settings`
 --
 ALTER TABLE `tb_settings`
@@ -266,6 +295,12 @@ ALTER TABLE `tb_berita`
 --
 ALTER TABLE `tb_keuangan`
   ADD CONSTRAINT `tb_keuangan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tb_pinjaman`
+--
+ALTER TABLE `tb_pinjaman`
+  ADD CONSTRAINT `tb_pinjaman_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_surat`
